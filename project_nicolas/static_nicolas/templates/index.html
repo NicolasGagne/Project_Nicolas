@@ -1,0 +1,14 @@
+{% extends 'base_template.html' %}
+
+{% block Main %}
+<header id="first">
+    <div class="header-content">
+        <div class="inner">
+            <h1 class="cursive">Simple, work in progress</h1>
+            <h4>Landing page for my project.</h4>
+            <hr>
+            <a href="https://www.notamclassifier.com" id="toggleVideo" class="btn btn-primary btn-xl">Notam Classifier</a> &nbsp; <a href= "{% url 'Bookmarks_root' %}" class="btn btn-primary btn-xl page-scroll">Bookmarks Project</a>
+        </div>
+    </div>
+</header>
+{% endblock Main %}

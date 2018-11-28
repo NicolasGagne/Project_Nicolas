@@ -1,0 +1,14 @@
+{% extends 'base_template.html' %}
+
+{% block Main %}
+<header id="first">
+    <div class="header-content">
+        <div class="inner">
+            <h1 class="cursive">App Bookmark</h1>
+            <h4>Select</h4>
+            <hr>
+            <a href="{% url 'appBookmarks:bookmarks-list' %}" id="toggleVideo" class="btn btn-primary btn-xl">Bookmarks List</a> &nbsp; <a href="admin/" class="btn btn-primary btn-xl page-scroll">Admin users</a>
+        </div>
+    </div>
+</header>
+{% endblock Main %}

@@ -1,0 +1,54 @@
+{% extends 'base_template.html' %}
+{% block Main %}
+<section id="first">
+    <div class="container">
+        <div class="inner">
+
+            <h1 class="cursive">Bookmark list</h1>
+
+            <h5>
+                <table style="list-style-type:none; width:100%">
+                    <tr aling="center">
+                        <th> </th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>URL Link</th>
+                        <th >Created</th>
+                        <th>Last_active</th>
+                        <th>Last Check</th>
+                    </tr>
+                {% for bookmark in data %}
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <th>{{ bookmark.title }}</th>
+                        <th>{{ bookmark.type_name }} </th>
+                        <th><a href="{% url 'appBookmarks:clic_link' id=bookmark.id %}">{{ bookmark.site_link }}</a> </th>
+                        <th>{{ bookmark.created }} </th>
+                        <th>{{ bookmark.last_active }}</th>
+                        <th>{{ bookmark.last_check }}</th>
+                    </tr>
+                {% endfor %}
+                </table>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <h4><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></h4>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </h5>
+
+            <br>
+            <br>
+
+            <h1 class="cursive">NEW Bookmark</h1>
+            <form action="{% url 'appBookmarks:bookmarks-list' %}" method="post">
+                {% csrf_token %}
+                {{ form_bookmark }}
+                <input type="submit" value="Save" class="btn btn-primary btn-xl" />
+            </form>
+            <hr>
+        </div>
+    </div>
+</section>
+{% endblock Main %}
