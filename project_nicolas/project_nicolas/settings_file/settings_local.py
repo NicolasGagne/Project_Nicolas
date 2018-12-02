@@ -135,12 +135,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR_STATIC, 'static_nicolas')
+STATIC_ROOT = os.path.join(BASE_DIR_STATIC, 'static_nicolas_collect')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(STATIC_ROOT, 'static_app_bookmarks'),
+    os.path.join(BASE_DIR_STATIC, 'static_nicolas'),
     ]
+
 
 """USER CONSTANT"""
 
