@@ -51,7 +51,7 @@ def check_link(request):
 
         try:
             urllib.request.urlopen(url).getcode()
-            bm.last_check = datetime.utcnow()
+            bm.last_check = datetime.now()
             bm.save()
         except urllib.error.URLError:
 
