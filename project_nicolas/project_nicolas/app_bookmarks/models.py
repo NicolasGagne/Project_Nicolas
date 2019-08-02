@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.utils import timezone
+
 # Create your models here.
 
 TYPE_CHOICES = (
@@ -13,9 +15,9 @@ TYPE_CHOICES = (
 
 # Model for the Bookmark site
 class Bookmark(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    last_active = models.DateTimeField(auto_now_add=True)
-    last_check = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=timezone.now)
+    last_active = models.DateTimeField(default=timezone.now)
+    last_check = models.DateTimeField(default=timezone.now)
     site_link = models.URLField(max_length=250, default='url', unique=True)
     title = models.CharField(max_length=25, default='Site name', unique=True)
     description = models.TextField(max_length=144, default= 'Short description')
