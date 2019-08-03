@@ -39,7 +39,6 @@ def clic_link(request, id):
     check_link(request)
     return redirect(url)
 
-
 def check_link(request):
     """
     view to check if link are still valid
@@ -50,7 +49,8 @@ def check_link(request):
         url = full_url(bm.site_link)
 
         try:
-            urllib.request.urlopen(url).getcode()
+            code = urllib.request.urlopen(url).getcode()
+            print("Code: ", code)
             bm.last_check = datetime.now()
             bm.save()
         except urllib.error.URLError:
