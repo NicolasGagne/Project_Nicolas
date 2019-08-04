@@ -16,6 +16,7 @@ from project_nicolas.settings_file.settings_local import DAY_BEFORE_ERASE
 from django.db import IntegrityError
 from django.contrib import messages
 from rest_framework.exceptions import ValidationError
+from django.utils import timezone
 
 def full_url(url):
     if not (url.startswith('http://')) or not (url.startswith('https://')):
@@ -51,17 +52,16 @@ def check_link(request):
         try:
             code = urllib.request.urlopen(url).getcode()
             print("Code: ", code)
-            bm.last_check = datetime.now()
+            bm.last_check = timezone.now()
             bm.save()
         except urllib.error.URLError:
 
-            if bm.last_check.replace(tzinfo=None) < (datetime.utcnow() - timedelta(days=DAY_BEFORE_ERASE)):
+            if bm.last_check < (timezone.now() - timedelta(days=DAY_BEFORE_ERASE)):
                 messages.info(request,
                               bm.title + ',was deleted!, was not working the last ' + DAY_BEFORE_ERASE + ' days')
                 bm.delete()
 
-
-            elif bm.created.replace(tzinfo=None) > (datetime.utcnow() - timedelta(seconds=60)):
+            elif bm.created > (timezone.now() - timedelta(seconds=60)):
                 messages.info(request, bm.title + ' does not have a working link NOT ADDED TO THE LIST!')
                 bm.delete()
 
