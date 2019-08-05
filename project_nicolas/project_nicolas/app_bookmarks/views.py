@@ -44,6 +44,7 @@ def check_link(request):
     """
     view to check if link are still valid
     """
+
     queryset = Bookmark.objects.all()
     for bm in queryset:
 
@@ -51,7 +52,7 @@ def check_link(request):
 
         try:
             code = urllib.request.urlopen(url).getcode()
-            print("Code: ", code)
+            print("Code: ", code, " ", bm.site_link)
             bm.last_check = timezone.now()
             bm.save()
         except urllib.error.URLError:
