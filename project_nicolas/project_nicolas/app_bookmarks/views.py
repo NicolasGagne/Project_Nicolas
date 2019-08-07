@@ -108,10 +108,12 @@ class ListCreateBookmarkViewSet(mixins.CreateModelMixin,
         Override the create funtion in order to to return to the url list and check if old link are still valid.
         '''
 
+        print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
+        super(ListCreateBookmarkViewSet, self).create(request, *args, **kwargs)
+        print('{timestamp} -- request ended'.format(timestamp=datetime.utcnow().isoformat()))
+
         try:
-            print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
-            super(ListCreateBookmarkViewSet, self).create(request, *args, **kwargs)
-            print('{timestamp} -- request ended'.format(timestamp=datetime.utcnow().isoformat()))
+            pass
 
         except IntegrityError:
             messages.info(request, 'This URL all ready exist!')
