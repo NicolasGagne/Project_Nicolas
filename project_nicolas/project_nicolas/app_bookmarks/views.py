@@ -108,13 +108,16 @@ class ListCreateBookmarkViewSet(mixins.CreateModelMixin,
 
     def create(self, request, *args, **kwargs):
         '''
-        Override the create funtion in order to to return to the url list and check if old link are still valid.
+        Override the create funtion in order to to return to the url list and check url valid
         '''
 
+        url = request.POST["site_link"]
+        if not urllib.parse.urlparse(url).scheme:
+            url = 'http://' + url
+
         try:
-            print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
+            urllib.request.urlopen(url)
             super(ListCreateBookmarkViewSet, self).create(request, *args, **kwargs)
-            print('{timestamp} -- request ended'.format(timestamp=datetime.utcnow().isoformat()))
 
         except IntegrityError:
             messages.info(request, 'This URL all ready exist!')
@@ -122,6 +125,8 @@ class ListCreateBookmarkViewSet(mixins.CreateModelMixin,
         except ValidationError as error:
             messages.info(request, 'This TITLE all ready exist!')
 
-        check_link(request)
+        except urllib.error.URLError:
+            messages.info(request, request.POST["site_link"] + ' is not a working link NOT ADDED TO THE LIST!')
+
 
         return HttpResponseRedirect(redirect_to=reverse_lazy('appBookmarks:bookmarks-list'))
