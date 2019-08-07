@@ -44,8 +44,9 @@ def check_link(request):
     """
     view to check if link are still valid
     """
-
+    print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
     queryset = Bookmark.objects.all()
+    print('{timestamp} --QUERYSET request ended'.format(timestamp=datetime.utcnow().isoformat()))
     for bm in queryset:
 
         url = full_url(bm.site_link)
@@ -55,6 +56,7 @@ def check_link(request):
             print("Code: ", code, " ", bm.site_link)
             bm.last_check = timezone.now()
             bm.save()
+            print('{timestamp} --TRY request ended'.format(timestamp=datetime.utcnow().isoformat()))
         except urllib.error.URLError:
 
             if bm.last_check < (timezone.now() - timedelta(days=DAY_BEFORE_ERASE)):
@@ -68,6 +70,7 @@ def check_link(request):
 
             else:
                 messages.info(request, bm.title + ' is not working at this moment')
+            print('{timestamp} --EXCEPT request ended'.format(timestamp=datetime.utcnow().isoformat()))
 
     return HttpResponse(None)
 
@@ -108,12 +111,10 @@ class ListCreateBookmarkViewSet(mixins.CreateModelMixin,
         Override the create funtion in order to to return to the url list and check if old link are still valid.
         '''
 
-        print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
-        super(ListCreateBookmarkViewSet, self).create(request, *args, **kwargs)
-        print('{timestamp} -- request ended'.format(timestamp=datetime.utcnow().isoformat()))
-
         try:
-            pass
+            print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
+            super(ListCreateBookmarkViewSet, self).create(request, *args, **kwargs)
+            print('{timestamp} -- request ended'.format(timestamp=datetime.utcnow().isoformat()))
 
         except IntegrityError:
             messages.info(request, 'This URL all ready exist!')
