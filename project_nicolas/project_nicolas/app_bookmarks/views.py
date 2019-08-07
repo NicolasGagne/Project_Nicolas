@@ -109,7 +109,9 @@ class ListCreateBookmarkViewSet(mixins.CreateModelMixin,
         '''
 
         try:
+            print('{timestamp} -- request started'.format(timestamp=datetime.utcnow().isoformat()))
             super(ListCreateBookmarkViewSet, self).create(request, *args, **kwargs)
+            print('{timestamp} -- request ended'.format(timestamp=datetime.utcnow().isoformat()))
 
         except IntegrityError:
             messages.info(request, 'This URL all ready exist!')
