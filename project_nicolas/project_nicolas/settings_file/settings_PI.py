@@ -6,7 +6,7 @@ import os
 from .settings_local import *
 
 ALLOWED_HOSTS = [
-    '127.0.0.1:8008'
+    '127.0.0.1'
 ]
 
 DEBUG = True
