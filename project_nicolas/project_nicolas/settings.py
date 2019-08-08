@@ -19,7 +19,8 @@ if platform.system() == 'Windows':
 else:
     try:
         import RPi.GPIO as gpio
-        from .settings_file.settings_local import *
+
+        from .settings_file.settings_PI import *
     except(ImportError, RuntimeError):
         from .settings_file.settings_production import *
 
