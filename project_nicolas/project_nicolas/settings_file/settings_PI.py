@@ -19,6 +19,6 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': os.getenv("ENGINE_ENV"),
-        'NAME': os.path.join(BASE_DIR, os.getenv("NAME_ENV")),
+        'NAME': os.path.join(BASE_DIR, os.getenv("DATABASE_NAME_ENV")),
     }
 }

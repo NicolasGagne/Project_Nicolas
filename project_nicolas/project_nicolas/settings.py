@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 # load correct settings file depending of the Os
 
 import platform
-import os
+
 from dotenv import load_dotenv, find_dotenv
 
 if platform.system() == 'Windows':
