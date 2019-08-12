@@ -5,7 +5,7 @@
 import os
 
 from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv('local.env'))
+load_dotenv(find_dotenv('Production.env'))
 
 from .settings_local import *
 
