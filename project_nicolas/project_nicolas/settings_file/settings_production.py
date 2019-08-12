@@ -3,6 +3,10 @@
 
 
 import os
+
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv('local.env'))
+
 from .settings_local import *
 
 SECRET_KEY = os.getenv("SECRET_KEY_ENV")

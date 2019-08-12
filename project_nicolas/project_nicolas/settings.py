@@ -18,7 +18,6 @@ from dotenv import load_dotenv, find_dotenv
 
 if platform.system() == 'Windows':
 
-    load_dotenv(find_dotenv('local.env'))
     from .settings_file.settings_local import *
 
 else:
