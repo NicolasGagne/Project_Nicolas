@@ -12,28 +12,24 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 # load correct settings file depending of the Os
 
-import platform, os
+import platform
+import os
 from dotenv import load_dotenv, find_dotenv
 
 if platform.system() == 'Windows':
 
-    find_dotenv('local.env')
-    load_dotenv()
-    print(find_dotenv('.env'))
-    print("Secrest Key", os.getenv("SECRET_KEY_ENV"))
+    load_dotenv(find_dotenv('local.env'))
     from .settings_file.settings_local import *
 
 else:
     try:
         import RPi.GPIO as gpio
         # Following ling change to match path to .env.PI on the Raspberry PI
-        find_dotenv('PI.env')
-        load_dotenv()
+        load_dotenv(find_dotenv('PI.env'))
         from .settings_file.settings_PI import *
     except(ImportError, RuntimeError):
 
         # Following ling change to match path to .env.production on the server
-        find_dotenv('Production.env')
-        find_dotenv()
+        find_dotenv(find_dotenv('Production.env'))
         from .settings_file.settings_production import *
 
