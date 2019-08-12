@@ -1,20 +1,19 @@
 # Setting file for Local server
 
-
-
 import os
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR_STATIC = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
 print('BASE_DIR', BASE_DIR)
-print('BASE_DIR', BASE_DIR_STATIC)
+print('BASE_DIR_STATIC', BASE_DIR_STATIC)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '92ve2rknxss((sb7$1d4fq1$0m_^tg-6u-jsw0e_h+@^7&@jsg'
+SECRET_KEY = os.getenv("SECRET_KEY_ENV")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -93,8 +92,8 @@ WSGI_APPLICATION = 'project_nicolas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv("ENGINE_ENV"),
+        'NAME': os.path.join(BASE_DIR, os.getenv("NAME_ENV")),
     }
 }
 
