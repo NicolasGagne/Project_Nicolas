@@ -20,7 +20,7 @@ DATABASES = {
         'ENGINE': os.getenv("ENGINE_ENV"),
         'NAME': os.getenv("NAME_ENV"),
         'USER': os.getenv("USER_ENV"),
-        'PASSWORD': os.getenv("PASSWORT_ENV"),
+        'PASSWORD': os.getenv("PASSWORD_ENV"),
         'HOST': os.getenv("HOST_ENV"),
     }
 }
