@@ -17,7 +17,7 @@ from dotenv import load_dotenv, find_dotenv
 
 if platform.system() == 'Windows':
 
-    find_dotenv('.env')
+    find_dotenv('local.env')
     load_dotenv()
     print(find_dotenv('.env'))
     print("Secrest Key", os.getenv("SECRET_KEY_ENV"))
