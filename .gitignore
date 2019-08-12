@@ -85,7 +85,7 @@ celerybeat-schedule
 # Environments
 PI.env
 Production.env
-.env
+#.env
 .venv
 env/
 venv/
