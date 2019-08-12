@@ -5,6 +5,8 @@
 import os
 from .settings_local import *
 
+SECRET_KEY = os.getenv("SECRET_KEY_ENV")
+
 ALLOWED_HOSTS = [
     'ngagne.pythonanywhere.com'
 ]

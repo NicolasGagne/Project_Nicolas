@@ -27,13 +27,13 @@ else:
     try:
         import RPi.GPIO as gpio
         # Following ling change to match path to .env.PI on the Raspberry PI
-        # find_dotenv('PI.env')
-        # load_dotenv()
+        find_dotenv('PI.env')
+        load_dotenv()
         from .settings_file.settings_PI import *
     except(ImportError, RuntimeError):
 
         # Following ling change to match path to .env.production on the server
-        #find_dotenv('Production.env')
-        # find_dotenv()
+        find_dotenv('Production.env')
+        find_dotenv()
         from .settings_file.settings_production import *
 
