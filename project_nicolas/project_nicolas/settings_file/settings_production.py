@@ -13,11 +13,11 @@ ALLOWED_HOSTS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Ngagne$project_NGagne',
-        'USER': 'Ngagne',
-        'PASSWORD': 'project_NGagne922794&',
-        'HOST': 'Ngagne.mysql.pythonanywhere-services.com',
+        'ENGINE': os.getenv("ENGINE_ENV"),
+        'NAME': os.getenv("NAME_ENV"),
+        'USER': os.getenv("USER_ENV"),
+        'PASSWORD': os.getenv("PASSWORT_ENV"),
+        'HOST': os.getenv("HOST_ENV"),
     }
 }
 
