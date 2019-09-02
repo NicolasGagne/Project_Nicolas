@@ -17,9 +17,10 @@ ALLOWED_HOSTS = [
     '142.122.50.151',
     '192.168.2.37',
     'nicolasgagne.freeddns.org',
+    '*'
 ]
 
-DEBUG = True
+DEBUG = False
 
 DATABASES = {
     'default': {
